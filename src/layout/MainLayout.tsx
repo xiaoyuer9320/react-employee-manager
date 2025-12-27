@@ -1,7 +1,8 @@
 import React from "react";
-import {Layout,Menu,theme} from 'antd';
+import {Layout,Menu,theme,Button,Space} from 'antd';
 import { DashboardOutlined,UserOutlined } from "@ant-design/icons";
 import { useNavigate,Outlet,useLocation } from "react-router-dom";
+import { useUserStore } from '../store/useUserStore';
 
 const {Header,Content,Sider} =Layout;
 const MainLayout:React.FC = () =>{
@@ -12,6 +13,9 @@ const MainLayout:React.FC = () =>{
     const{
         token:{colorBgContainer,borderRadiusLG},
     }=theme.useToken();
+
+    // 直接调用 Hook，拿出我们需要的数据和方法
+    const { username, isLogin, logout } = useUserStore();
 
     //菜单配置
     const menuItems = [
@@ -44,7 +48,16 @@ const MainLayout:React.FC = () =>{
 
             {/* 右侧主体 */}
             <Layout>
-                <Header style={{padding:0,background:colorBgContainer}}/>
+                <Header style={{ padding: '0 24px', background: colorBgContainer, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                    {isLogin ? (
+                        <Space>
+                            <span>欢迎, {username}</span>
+                            <Button type="link" onClick={logout}>退出</Button>
+                        </Space>
+                    ) : (
+                        <span>请先登录</span>
+                    )}
+                </Header>
                 <Content style={{margin:'16px'}}>
                     <div style={{
                         padding:30, 
