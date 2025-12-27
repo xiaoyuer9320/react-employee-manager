@@ -53,11 +53,12 @@ const MainLayout:React.FC = () =>{
                         borderRadius:borderRadiusLG,
                     }}
                     >
-                        {/* 核心重点：Outlet */}
-                        {/* 这里是一个“坑位”，路由匹配到什么页面，就把那个页面赛道这里显示*/}
-                        <Outlet/>   
+                
+                    {/* 核心重点：Outlet */}
+                    {/* 这里是一个“坑位”，路由匹配到什么页面，就把那个页面赛道这里显示*/}
+                    <Outlet/>   
                     </div>
-                </Content>
+                </Content>  
             </Layout>
         </Layout>
     );
