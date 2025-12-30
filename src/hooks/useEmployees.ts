@@ -51,7 +51,7 @@ export const useEmployees = () => {
   // Partial<Employee> 意思是可以只传 Employee 的一部分属性（因为 id 是自动生成的）
   const addEmployee = async (values: Partial<Employee>) => {
     try {
-      const newEmployee = { ...values, status: 'active' };
+      const newEmployee = { ...values, status: '在职' };
       await axios.post('http://localhost:3000/employees', newEmployee);
       message.success('添加成功');
       fetchEmployees(); // 刷新列表
